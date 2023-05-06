@@ -1,0 +1,39 @@
+# First, we'll start by importing the necessary libraries:
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+# Next, we'll load the data into a Pandas DataFrame:
+df = pd.read_csv('house_data.csv')
+# Now, we'll split the data into training and testing sets:
+X = df[['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'condition', 'grade']]
+y = df['price']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# We've used the columns 'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'condition', and 'grade' as our features, and 'price' as our target variable.
+# Next, we'll create an instance of the LinearRegression class and fit the model on our training data:
+model = LinearRegression()
+model.fit(X_train, y_train)
+# Now that our model is trained, we can use it to make predictions on our test data:
+y_pred = model.predict(X_test)
+# Finally, we can evaluate the performance of our model by calculating the R-squared score:
+r2 = r2_score(y_test, y_pred)
+print(f"R-squared score: {r2:.2f}")
+
+# Here's the complete code:
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+df = pd.read_csv('house_hyderabad_data.csv')
+X = df[['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'condition', 'grade']]
+y = df['price']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model = LinearRegression()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+r2 = r2_score(y_test, y_pred)
+print(f"R-squared score: {r2:.2f}")
